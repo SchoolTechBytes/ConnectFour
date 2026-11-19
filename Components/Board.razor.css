@@ -83,6 +83,31 @@ span.container {
     box-shadow: 0 0 0 4px var(--player2)
 }
 
+.move-history {
+    margin-top: 1em;
+    width: 30em;
+    max-width: 100%;
+}
+
+    .move-history ol {
+        max-height: 12em;
+        overflow-y: auto;
+        padding-left: 2.5em;
+    }
+
+    .move-history li {
+        padding-left: .4em;
+        border-left: 6px solid transparent;
+    }
+
+    .move-history li.move-p1 {
+        border-left-color: var(--player1);
+    }
+
+    .move-history li.move-p2 {
+        border-left-color: var(--player2);
+    }
+
 .col0 {
     left: calc(0em + 9px)
 }

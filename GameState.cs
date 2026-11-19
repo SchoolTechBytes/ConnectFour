@@ -171,17 +171,32 @@ public class GameState
             landingSpot = i;
         }
 
-        TheBoard[landingSpot] = PlayerTurn;
+        var player = PlayerTurn;
+        TheBoard[landingSpot] = player;
 
-        return ConvertLandingSpotToRow(landingSpot);
+        var row = ConvertLandingSpotToRow(landingSpot);
+        Moves.Add(new Move(Moves.Count + 1, player, column + 1, row));
+
+        return row;
 
     }
+
+    /// <summary>
+    /// A single move made during the game (column is 1-indexed, row counts from the top)
+    /// </summary>
+    public record Move(int Number, int Player, int Column, int Row);
+
+    /// <summary>
+    /// Moves made so far in the current game, in order
+    /// </summary>
+    public List<Move> Moves { get; private set; } = new();
 
     public List<int> TheBoard { get; private set; } = new List<int>(new int[42]);
 
     public void ResetBoard()
     {
         TheBoard = new List<int>(new int[42]);
+        Moves = new List<Move>();
     }
 
     private byte ConvertLandingSpotToRow(int landingSpot)

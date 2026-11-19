@@ -41,6 +41,23 @@
 
     }
 </div>
+
+<section class="move-history" aria-label="Move history">
+    <h3>Moves</h3>
+    @if (State.Moves.Count == 0)
+    {
+        <p>No moves yet.</p>
+    }
+    else
+    {
+        <ol reversed>
+            @foreach (var m in State.Moves.AsEnumerable().Reverse())
+            {
+                <li value="@m.Number" class="move-p@(m.Player)">Player @m.Player → column @m.Column (row @m.Row)</li>
+            }
+        </ol>
+    }
+</section>
 @code {
     private string[] pieces = new string[42];
 
